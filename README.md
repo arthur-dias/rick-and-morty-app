@@ -10,7 +10,7 @@ App que utiliza a Api de Rick and Morty e mostra os personagens, dá a opção d
 [React Router](https://github.com/remix-run/react-router)
 [Axios](https://github.com/axios/axios)
 
-## Api
+## API
 
 [Rick and Morty API](https://rickandmortyapi.com/)
 
