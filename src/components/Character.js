@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const Character = ({ character }) => {
   const { name, species, image } = character
 
