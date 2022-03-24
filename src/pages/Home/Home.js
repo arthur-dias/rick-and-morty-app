@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
+import { Character } from '../../components/Character'
+import { Filter } from '../../components/Filter'
 const axios = require('axios').default
 
 const Home = () => {
   const [characters, setCharacters] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(false)
+  const [allCharacters, setAllCharacters] = useState([])
 
   const url = 'https://rickandmortyapi.com/api/character'
 
@@ -12,6 +15,8 @@ const Home = () => {
     try {
       const response = await axios.get(url)
       setCharacters(response.data.results)
+
+      setAllCharacters(response.data.results)
 
       setIsLoading(false)
       setError(false)
@@ -35,24 +40,27 @@ const Home = () => {
     return <h1>Error fetching the data.</h1>
   }
 
-  return (
-    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-      {characters.map((character) => (
-        <Character character={character} key={character.id} />
-      ))}
-    </div>
-  )
-}
+  const handleFilter = (specie) => {
+    const characterFilteredBySpecie = allCharacters.filter(
+      (char) => char.species === specie
+    )
 
-const Character = ({ character }) => {
-  const { name, species, image } = character
+    setCharacters(characterFilteredBySpecie)
+  }
 
   return (
     <div>
-      <img src={image} alt={name} />
-      <p>
-        {name} - {species}
-      </p>
+      <Filter handleFilter={handleFilter} />
+      <div
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: '5px',
+        }}>
+        {characters.map((character) => (
+          <Character character={character} key={character.id} />
+        ))}
+      </div>
     </div>
   )
 }
