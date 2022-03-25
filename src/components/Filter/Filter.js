@@ -1,4 +1,4 @@
-export const Filter = ({ handleFilter }) => {
+const Filter = ({ handleFilter }) => {
   return (
     <div style={{ marginBottom: '25px' }}>
       <div style={{ display: 'flex', justifyContent: 'center', gap: '5px' }}>
@@ -12,3 +12,5 @@ export const Filter = ({ handleFilter }) => {
     </div>
   )
 }
+
+export default Filter

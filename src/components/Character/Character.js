@@ -1,4 +1,4 @@
-export const Character = ({ character }) => {
+const Character = ({ character }) => {
   const { name, species, image } = character
 
   return (
@@ -10,3 +10,5 @@ export const Character = ({ character }) => {
     </div>
   )
 }
+
+export default Character

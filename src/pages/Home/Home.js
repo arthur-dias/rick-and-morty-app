@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from 'react'
 
 // Componentes
-import { Character } from '../../components/Character'
-import { Filter } from '../../components/Filter'
-import { SearchBar } from '../../components/SearchBar'
+import Header from '../../components/Header/Header'
+import Character from '../../components/Character/Character'
+import Filter from '../../components/Filter/Filter'
+import SearchBar from '../../components/SearchBar/SearchBar'
 
 const axios = require('axios').default
 
+const url = 'https://rickandmortyapi.com/api/character'
+
 const Home = () => {
   const [characters, setCharacters] = useState([])
+  const [allCharacters, setAllCharacters] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(false)
-  const [allCharacters, setAllCharacters] = useState([])
   const [textSearchTerm, setTextSearchTerm] = useState('')
   const [noMatchesFromTextSearch, setNoMatchesFromTextSearch] = useState(false)
 
-  const url = 'https://rickandmortyapi.com/api/character'
-
+  // Fetching data
   useEffect(() => {
     const fetchCharacters = async () => {
       try {
@@ -38,20 +40,18 @@ const Home = () => {
     fetchCharacters()
   }, [])
 
-  // Funcionalidade de filtro por espécie
+  // Event handlers
   const handleFilter = (specie) => {
     const characterFilteredBySpecie = allCharacters.filter(
       (char) => char.species === specie
     )
     setCharacters(characterFilteredBySpecie)
   }
-
-  // Caixa de busca
-
   const handleSubmit = (e) => {
     e.preventDefault()
   }
 
+  // Caixa de busca
   useEffect(() => {
     const searchCharacter = () => {
       if (textSearchTerm === '') {
@@ -91,6 +91,7 @@ const Home = () => {
 
   return (
     <div>
+      <Header />
       <Filter handleFilter={handleFilter} />
       <SearchBar
         handleSubmit={handleSubmit}

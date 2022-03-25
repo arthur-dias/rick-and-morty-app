@@ -1,4 +1,4 @@
-export const SearchBar = ({
+const SearchBar = ({
   handleSubmit,
   textSearchTerm,
   setTextSearchTerm,
@@ -24,3 +24,5 @@ export const SearchBar = ({
     </div>
   )
 }
+
+export default SearchBar
