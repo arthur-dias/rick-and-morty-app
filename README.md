@@ -7,7 +7,9 @@ App que utiliza a Api de Rick and Morty e mostra os personagens, dá a opção d
 ## Frameworks e Libs utilizadas
 
 [React](https://github.com/facebook/react/)
+
 [React Router](https://github.com/remix-run/react-router)
+
 [Axios](https://github.com/axios/axios)
 
 ## API
