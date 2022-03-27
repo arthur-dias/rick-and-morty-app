@@ -1,16 +1,15 @@
 import { Route, Routes } from 'react-router-dom'
 
-// Components
+// Pages
 import Home from './pages/Home/Home'
-
-// Styles
-import './App.css'
+import Character from './pages/Character/Character'
 
 function App() {
   return (
     <div className='App'>
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/character/:id' element={<Character />} />
       </Routes>
     </div>
   )

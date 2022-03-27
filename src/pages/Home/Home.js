@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react'
 
+// CSS
+import styles from './Home.module.css'
+
 // Componentes
 import Header from '../../components/Header/Header'
-import Character from '../../components/Character/Character'
 import Filter from '../../components/Filter/Filter'
 import SearchBar from '../../components/SearchBar/SearchBar'
+import CharactersGrid from '../../components/CharactersGrid/CharactersGrid'
 
 const axios = require('axios').default
 
-const url = 'https://rickandmortyapi.com/api/character'
+const url = 'https://rickandmortyapi.com/api/character/'
 
 const Home = () => {
   const [characters, setCharacters] = useState([])
@@ -82,11 +85,11 @@ const Home = () => {
   }, [textSearchTerm, allCharacters])
 
   if (isLoading) {
-    return <h1>Carregando...</h1>
+    return <h1 className={styles.message}>Carregando...</h1>
   }
 
   if (error) {
-    return <h1>Erro carregando dados.</h1>
+    return <h1 className={styles.message}>Erro carregando dados.</h1>
   }
 
   return (
@@ -101,16 +104,8 @@ const Home = () => {
         isLoading={isLoading}
         error={error}
       />
-      <div
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: '5px',
-        }}>
-        {!noMatchesFromTextSearch &&
-          characters.map((character) => (
-            <Character character={character} key={character.id} />
-          ))}
+      <div>
+        {!noMatchesFromTextSearch && <CharactersGrid characters={characters} />}
       </div>
     </div>
   )

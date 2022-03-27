@@ -1,0 +1,22 @@
+.searchbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 25px;
+}
+
+.searchbar span {
+  font-size: 1.5rem;
+}
+
+.searchbar input {
+  font-size: 1.5rem;
+  border: none;
+  border-bottom: 1px solid #000;
+}
+
+.searchbar input:focus {
+  outline: none;
+  caret-color: #000;
+}

@@ -1,13 +1,16 @@
+import { Link } from 'react-router-dom'
+
+// CSS
+import styles from './Character.module.css'
+
 const Character = ({ character }) => {
-  const { name, species, image } = character
+  const { name, image, id } = character
 
   return (
-    <div style={{ border: '1px solid #000' }}>
+    <Link to={'/character/' + id} className={styles.character}>
       <img src={image} alt={name} />
-      <p>
-        {name} - {species}
-      </p>
-    </div>
+      <p className={styles.character_name}>{name}</p>
+    </Link>
   )
 }
 

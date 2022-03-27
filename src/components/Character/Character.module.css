@@ -1,0 +1,25 @@
+.character {
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  text-decoration: none;
+  border-radius: 15px;
+}
+
+.character img {
+  border: 3px solid black;
+  border-radius: 3%;
+}
+
+.character_name {
+  position: relative;
+  bottom: 80px;
+  text-align: center;
+  color: #000;
+  background: #fff;
+  padding: 5px 0;
+  align-self: center;
+  width: 50%;
+  border-radius: 10px;
+  border: 3px solid #000;
+}

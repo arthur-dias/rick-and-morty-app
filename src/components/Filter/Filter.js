@@ -1,14 +1,16 @@
+// CSS
+import styles from './Filter.module.css'
+
 const Filter = ({ handleFilter }) => {
   return (
-    <div style={{ marginBottom: '25px' }}>
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '5px' }}>
-        <button type='button' onClick={() => handleFilter('Human')}>
-          Human
-        </button>
-        <button type='button' onClick={() => handleFilter('Alien')}>
-          Alien
-        </button>
-      </div>
+    <div className={styles.filter}>
+      <p>Filtrar por espécie:</p>
+      <button type='button' onClick={() => handleFilter('Human')}>
+        Humano
+      </button>
+      <button type='button' onClick={() => handleFilter('Alien')}>
+        Alien
+      </button>
     </div>
   )
 }

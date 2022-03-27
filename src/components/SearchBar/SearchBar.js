@@ -1,3 +1,6 @@
+// CSS
+import styles from './SearchBar.module.css'
+
 const SearchBar = ({
   handleSubmit,
   textSearchTerm,
@@ -7,14 +10,13 @@ const SearchBar = ({
   error,
 }) => {
   return (
-    <div style={{ marginBottom: '25px' }}>
+    <div className={styles.searchbar}>
       <form onSubmit={handleSubmit}>
-        <span>Search: </span>
+        <span>Buscar: </span>
         <input
           type='text'
           value={textSearchTerm}
           onChange={(e) => setTextSearchTerm(e.target.value)}
-          style={{ padding: '5px 5px' }}
         />
       </form>
 
