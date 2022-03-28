@@ -20,3 +20,10 @@
   outline: none;
   caret-color: #000;
 }
+
+@media screen and (max-width: 700px) {
+  .searchbar span,
+  .searchbar input {
+    font-size: 1rem;
+  }
+}

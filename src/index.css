@@ -2,6 +2,7 @@
 
 * {
   font-size: 1rem;
+  background: #f9f9f9;
 }
 
 body {
@@ -16,4 +17,10 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@media screen and (max-width: 700px) {
+  body {
+    margin: 0 10px;
+  }
 }

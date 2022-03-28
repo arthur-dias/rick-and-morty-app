@@ -4,7 +4,7 @@ import React from 'react'
 import Character from '../Character/Character'
 
 // CSS
-import styles from './CharactersGrig.module.css'
+import styles from './CharactersGrid.module.css'
 
 const CharactersGrid = ({ characters }) => {
   return (

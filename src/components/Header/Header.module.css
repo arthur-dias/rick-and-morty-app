@@ -2,3 +2,9 @@
   display: flex;
   justify-content: center;
 }
+
+@media screen and (max-width: 760px) {
+  .header img {
+    width: 300px;
+  }
+}
