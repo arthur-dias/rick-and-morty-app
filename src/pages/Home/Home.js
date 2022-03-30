@@ -18,7 +18,7 @@ const Home = () => {
   const [allCharacters, setAllCharacters] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(false)
-  const [textSearchTerm, setTextSearchTerm] = useState('')
+  const [textSearchTerm, setTextSearchTerm] = useState(null)
   const [noMatchesFromTextSearch, setNoMatchesFromTextSearch] = useState(false)
 
   // Fetching data
@@ -50,39 +50,59 @@ const Home = () => {
     )
     setCharacters(characterFilteredBySpecie)
   }
+
   const handleSubmit = (e) => {
     e.preventDefault()
   }
 
   // Caixa de busca
-  useEffect(() => {
-    const searchCharacter = () => {
-      if (textSearchTerm === '') {
-        setCharacters(allCharacters)
-        setNoMatchesFromTextSearch(false)
-      } else {
-        setTimeout(() => {
-          const characterFilteredByName = allCharacters
-            .filter((character) =>
-              character.name
-                .toLowerCase()
-                .includes(textSearchTerm.toLowerCase())
-            )
-            .map((character) => character)
 
-          if (characterFilteredByName.length === 0) {
-            console.log(`Nenhum resultado encontrado para "${textSearchTerm}"`)
-            setNoMatchesFromTextSearch(true)
-          } else {
-            setNoMatchesFromTextSearch(false)
-            setCharacters(characterFilteredByName)
-          }
-        }, 200)
+  useEffect(() => {
+    const searchCharacter = async () => {
+      if (textSearchTerm === '') {
+        try {
+          const response = await axios.get(url)
+          setCharacters(response.data.results)
+
+          setAllCharacters(response.data.results)
+
+          setNoMatchesFromTextSearch(false)
+          setIsLoading(false)
+          setError(false)
+        } catch (error) {
+          setError(true)
+          setIsLoading(false)
+          console.log(error.message)
+        }
+      }
+
+      if (textSearchTerm === null) {
+        return
+      }
+
+      if (textSearchTerm !== '') {
+        try {
+          const response = await axios.get(
+            url + '?name=' + textSearchTerm.toLowerCase()
+          )
+
+          setCharacters(response.data.results)
+
+          setAllCharacters(response.data.results)
+
+          setNoMatchesFromTextSearch(false)
+          setIsLoading(false)
+          setError(false)
+        } catch (error) {
+          setNoMatchesFromTextSearch(true)
+          setIsLoading(false)
+          console.log(error.message)
+        }
       }
     }
 
     searchCharacter()
-  }, [textSearchTerm, allCharacters])
+  }, [textSearchTerm])
 
   if (isLoading) {
     return <h1 className={styles.message}>Carregando...</h1>

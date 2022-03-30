@@ -1,3 +1,6 @@
+// Biblioteca para adicionar debounce a um elemento
+import { DebounceInput } from 'react-debounce-input'
+
 // CSS
 import styles from './SearchBar.module.css'
 
@@ -13,10 +16,11 @@ const SearchBar = ({
     <div className={styles.searchbar}>
       <form onSubmit={handleSubmit}>
         <span>Buscar: </span>
-        <input
+        <DebounceInput
           type='text'
           value={textSearchTerm}
           onChange={(e) => setTextSearchTerm(e.target.value)}
+          debounceTimeout={300}
         />
       </form>
 
