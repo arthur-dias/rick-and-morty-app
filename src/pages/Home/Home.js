@@ -59,6 +59,10 @@ const Home = () => {
 
   useEffect(() => {
     const searchCharacter = async () => {
+      if (textSearchTerm === null) {
+        return
+      }
+
       if (textSearchTerm === '') {
         try {
           const response = await axios.get(url)
@@ -74,10 +78,6 @@ const Home = () => {
           setIsLoading(false)
           console.log(error.message)
         }
-      }
-
-      if (textSearchTerm === null) {
-        return
       }
 
       if (textSearchTerm !== '') {

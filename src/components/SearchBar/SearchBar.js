@@ -20,7 +20,7 @@ const SearchBar = ({
           type='text'
           value={textSearchTerm}
           onChange={(e) => setTextSearchTerm(e.target.value)}
-          debounceTimeout={300}
+          debounceTimeout={800}
         />
       </form>
 
