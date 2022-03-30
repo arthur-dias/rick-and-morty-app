@@ -15,7 +15,7 @@ const url = 'https://rickandmortyapi.com/api/character/'
 
 const Home = () => {
   const [characters, setCharacters] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(false)
   const [textSearchTerm, setTextSearchTerm] = useState(null)
   const [speciesSearchTerm, setSpeciesSearchTerm] = useState(null)
@@ -38,7 +38,7 @@ const Home = () => {
       }
     }
 
-    setIsLoading(true)
+    // setIsLoading(true)
     fetchCharacters()
   }, [])
 

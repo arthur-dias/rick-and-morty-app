@@ -11,6 +11,9 @@ const Filter = ({ handleFilter }) => {
       <button type='button' onClick={() => handleFilter('Alien')}>
         Alien
       </button>
+      <button type='button' onClick={() => handleFilter('')}>
+        Todos
+      </button>
     </div>
   )
 }

@@ -53,15 +53,5 @@ const Character = () => {
       )}
     </div>
   )
-
-  // if (isLoading) {
-  //   return <h1 className={styles.message}>Carregando...</h1>
-  // }
-
-  // if (error) {
-  //   return <h1 className={styles.message}>Erro carregando dados.</h1>
-  // }
-
-  // return <CharacterDetails character={character} />
 }
 export default Character
