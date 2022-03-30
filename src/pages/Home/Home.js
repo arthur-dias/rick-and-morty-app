@@ -15,20 +15,19 @@ const url = 'https://rickandmortyapi.com/api/character/'
 
 const Home = () => {
   const [characters, setCharacters] = useState([])
-  const [allCharacters, setAllCharacters] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(false)
   const [textSearchTerm, setTextSearchTerm] = useState(null)
+  const [speciesSearchTerm, setSpeciesSearchTerm] = useState(null)
   const [noMatchesFromTextSearch, setNoMatchesFromTextSearch] = useState(false)
 
-  // Fetching data
+  // Fetching data inicial
   useEffect(() => {
     const fetchCharacters = async () => {
       try {
         const response = await axios.get(url)
-        setCharacters(response.data.results)
 
-        setAllCharacters(response.data.results)
+        setCharacters(response.data.results)
 
         setIsLoading(false)
         setError(false)
@@ -43,20 +42,7 @@ const Home = () => {
     fetchCharacters()
   }, [])
 
-  // Event handlers
-  const handleFilter = (specie) => {
-    const characterFilteredBySpecie = allCharacters.filter(
-      (char) => char.species === specie
-    )
-    setCharacters(characterFilteredBySpecie)
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-  }
-
   // Caixa de busca
-
   useEffect(() => {
     const searchCharacter = async () => {
       if (textSearchTerm === null) {
@@ -66,9 +52,8 @@ const Home = () => {
       if (textSearchTerm === '') {
         try {
           const response = await axios.get(url)
-          setCharacters(response.data.results)
 
-          setAllCharacters(response.data.results)
+          setCharacters(response.data.results)
 
           setNoMatchesFromTextSearch(false)
           setIsLoading(false)
@@ -88,8 +73,6 @@ const Home = () => {
 
           setCharacters(response.data.results)
 
-          setAllCharacters(response.data.results)
-
           setNoMatchesFromTextSearch(false)
           setIsLoading(false)
           setError(false)
@@ -103,6 +86,60 @@ const Home = () => {
 
     searchCharacter()
   }, [textSearchTerm])
+
+  // Filtro por espécie
+  useEffect(() => {
+    const searchCharacter = async () => {
+      if (speciesSearchTerm === null) {
+        return
+      }
+
+      if (speciesSearchTerm === '') {
+        try {
+          const response = await axios.get(url)
+
+          setCharacters(response.data.results)
+
+          setNoMatchesFromTextSearch(false)
+          setIsLoading(false)
+          setError(false)
+        } catch (error) {
+          setError(true)
+          setIsLoading(false)
+          console.log(error.message)
+        }
+      }
+
+      if (speciesSearchTerm !== '') {
+        try {
+          const response = await axios.get(
+            url + '?species=' + speciesSearchTerm.toLowerCase()
+          )
+
+          setCharacters(response.data.results)
+
+          setNoMatchesFromTextSearch(false)
+          setIsLoading(false)
+          setError(false)
+        } catch (error) {
+          setNoMatchesFromTextSearch(true)
+          setIsLoading(false)
+          console.log(error.message)
+        }
+      }
+    }
+
+    searchCharacter()
+  }, [speciesSearchTerm])
+
+  // Event handlers
+  const handleFilter = (specie) => {
+    setSpeciesSearchTerm(specie)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+  }
 
   if (isLoading) {
     return <h1 className={styles.message}>Carregando...</h1>
